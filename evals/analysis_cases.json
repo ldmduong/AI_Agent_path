@@ -1,0 +1,85 @@
+[
+  {
+    "id": "aggregate-sales-by-region",
+    "question": "Tính tổng doanh thu theo vùng",
+    "data": [
+      {"region": "North", "revenue": 10},
+      {"region": "North", "revenue": 5},
+      {"region": "South", "revenue": 7}
+    ],
+    "expected_specialist": "analytics",
+    "expected_operation": "aggregate",
+    "expected_plan": {
+      "operation": "aggregate",
+      "group_by": ["region"],
+      "metrics": [{"column": "revenue", "function": "sum"}]
+    },
+    "expected_rows": [
+      {"region": "North", "sum_revenue": 15},
+      {"region": "South", "sum_revenue": 7}
+    ]
+  },
+  {
+    "id": "monthly-revenue-trend",
+    "question": "Xu hướng doanh thu theo tháng",
+    "data": [
+      {"date": "2026-01-05", "revenue": 10},
+      {"date": "2026-01-20", "revenue": 5},
+      {"date": "2026-02-08", "revenue": 20}
+    ],
+    "expected_specialist": "analytics",
+    "expected_operation": "trend",
+    "expected_plan": {
+      "operation": "trend",
+      "time_column": "date",
+      "interval": "month",
+      "metrics": [{"column": "revenue", "function": "sum"}]
+    },
+    "expected_trend": {
+      "metric": "sum_revenue",
+      "direction": "increasing",
+      "first_value": 15,
+      "last_value": 20
+    }
+  },
+  {
+    "id": "filter-high-revenue",
+    "question": "Lọc các đơn hàng có doanh thu lớn hơn 10",
+    "data": [
+      {"order_id": "A", "revenue": 8},
+      {"order_id": "B", "revenue": 15},
+      {"order_id": "C", "revenue": 20}
+    ],
+    "expected_specialist": "filter",
+    "expected_operation": "filter",
+    "expected_plan": {
+      "operation": "filter",
+      "filters": [{"column": "revenue", "operator": "gt", "value": 10}]
+    },
+    "expected_rows": [
+      {"order_id": "B", "revenue": 15},
+      {"order_id": "C", "revenue": 20}
+    ]
+  },
+  {
+    "id": "revenue-bar-chart",
+    "question": "Vẽ biểu đồ cột tổng doanh thu theo vùng",
+    "data": [
+      {"region": "North", "revenue": 10},
+      {"region": "South", "revenue": 7}
+    ],
+    "expected_specialist": "visualization",
+    "expected_operation": "aggregate",
+    "expected_plan": {
+      "operation": "aggregate",
+      "group_by": ["region"],
+      "metrics": [{"column": "revenue", "function": "sum"}],
+      "charts": [{"type": "bar", "x": "region", "y": "sum_revenue"}]
+    },
+    "expected_chart_type": "bar",
+    "expected_rows": [
+      {"region": "North", "sum_revenue": 10},
+      {"region": "South", "sum_revenue": 7}
+    ]
+  }
+]

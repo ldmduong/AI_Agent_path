@@ -2,7 +2,12 @@
 langchain==1.4.6
 langchain-core==1.6.11
 langchain-community==0.4.2
+langchain-ollama==1.1.0
+langchain-chroma==1.1.0
+langchain-text-splitters==1.1.2
 langgraph==1.2.15
+langgraph-checkpoint-sqlite==3.1.2
+langsmith==0.14.11
 
 # --- Nhóm kết nối LLM Provider ---
 langchain-google-genai==4.4.2
@@ -14,3 +19,16 @@ openai==3.31.0
 wikipedia==1.4.0
 python-dotenv==1.2.3
 pydantic==2.13.4
+
+# --- API, UI và phân tích CSV/Excel ---
+fastapi==0.115.12
+uvicorn==0.54.0
+pandas==2.2.3
+openpyxl==3.1.5
+pypdf==6.6.0
+python-multipart==0.0.20
+streamlit==1.66.0
+plotly==6.0.1
+httpx==0.28.1
+protobuf==6.33.5
+pytest==8.3.5

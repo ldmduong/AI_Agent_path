@@ -1,2 +1,10 @@
 .env
-chroma_db/ 
+chroma_db/
+data/uploads/
+data/vector_store/
+data/agent_state.sqlite3*
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.env.example
