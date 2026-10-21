@@ -277,6 +277,10 @@ def poll_analysis_job():
 
 poll_analysis_job()
 
+ai_result = st.session_state.get("analysis")
+if ai_result and ai_result.get("question"):
+    st.success(ai_result.get("answer") or "AI đã xử lý xong nhưng không trả về nội dung câu trả lời.")
+
 st.subheader("Phân tích")
 all_columns = [column["name"] for column in profile["columns"]]
 numeric_columns = [
@@ -373,7 +377,8 @@ if submit:
 
 result = st.session_state.get("analysis")
 if result:
-    st.success(result["answer"])
+    if not result.get("question"):
+        st.success(result["answer"])
     if result.get("question"):
         st.caption(
             f"Câu hỏi: {result['question']} · Chuyên gia: {result.get('specialist', '—')} · "
